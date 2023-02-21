@@ -11,6 +11,10 @@
     "test:ui": "vitest --ui"
   },
   "dependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "jotai": "^2.0.2",
+    "jotai-optics": "^0.3.0",
+    "optics-ts": "^2.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
