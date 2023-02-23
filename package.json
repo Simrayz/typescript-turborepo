@@ -16,7 +16,8 @@
     "jotai-optics": "^0.3.0",
     "optics-ts": "^2.4.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "zod": "^3.20.6"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
