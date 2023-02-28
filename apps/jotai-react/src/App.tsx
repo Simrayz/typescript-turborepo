@@ -1,5 +1,5 @@
-import { Card, Counter } from '@/components';
 import { JotaiPeople } from './components/JotaiPeople';
+import { Card, Counter } from '@/components';
 
 function App() {
   return (

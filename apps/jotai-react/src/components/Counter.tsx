@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Card } from "./Card";
+import { Card } from './Card';
+import { useState } from 'react';
 
 export function Counter() {
   const [count, setCount] = useState(0);

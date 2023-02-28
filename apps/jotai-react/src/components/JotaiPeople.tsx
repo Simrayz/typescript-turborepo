@@ -1,7 +1,7 @@
 import { Card } from '@/components';
+import { faker } from '@faker-js/faker';
 import { atom, PrimitiveAtom, useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { focusAtom } from 'jotai-optics';
-import { faker } from '@faker-js/faker';
 
 type Person = {
   id: string;
