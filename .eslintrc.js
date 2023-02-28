@@ -1,7 +1,7 @@
 /** @type {import("eslint").Linter.Config} */
 const config = {
   root: true,
-  extends: ["acme"],
+  extends: ["panosse"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: "latest",

@@ -17,7 +17,8 @@
     "optics-ts": "^2.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "zod": "^3.20.6"
+    "zod": "^3.20.6",
+    "@panosse/tailwind-config": "*"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

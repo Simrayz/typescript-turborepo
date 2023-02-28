@@ -27,6 +27,7 @@ importers:
   apps/jotai-react:
     specifiers:
       '@faker-js/faker': ^7.6.0
+      '@panosse/tailwind-config': '*'
       '@types/react': ^18.0.27
       '@types/react-dom': ^18.0.10
       '@vitejs/plugin-react-swc': ^3.0.0
@@ -48,6 +49,7 @@ importers:
       zod: ^3.20.6
     dependencies:
       '@faker-js/faker': 7.6.0
+      '@panosse/tailwind-config': link:../../packages/config/tailwind
       jotai: 2.0.2_react@18.2.0
       jotai-optics: 0.3.0_ve3mdc235hz7dbpwcxdq6wzsxq
       optics-ts: 2.4.0
