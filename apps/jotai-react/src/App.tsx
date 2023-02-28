@@ -1,10 +1,10 @@
 import { JotaiPeople } from './components/JotaiPeople';
-import { Card, Counter } from '@/components';
+import { Card } from '@/components';
 
 function App() {
   return (
-    <div className="h-screen w-screen flex flex-col bg-slate-300 gap-4 py-4">
-      <header className="container mx-auto bg-white rounded-md flex p-4">
+    <div className="h-screen w-screen flex flex-col bg-slate-300 dark:bg-slate-900 gap-4 py-4">
+      <header className="container mx-auto bg-white dark:bg-slate-800 dark:text-slate-50 rounded-md flex p-4">
         <h1 className="text-2xl font-semibold">Jotai React Playground</h1>
       </header>
       <main className="container mx-auto flex-1 space-y-4">
@@ -16,7 +16,6 @@ function App() {
               TailwindCSS setup.
             </h4>
           </Card>
-          <Counter />
         </div>
         <JotaiPeople />
       </main>

@@ -1,4 +1,4 @@
-import { SafeParseReturnType, z, ZodSchema } from 'zod';
+import { type SafeParseReturnType, z, type ZodSchema } from 'zod';
 
 type ChangesetReturnType<T> = {
   valid: boolean;
@@ -8,7 +8,7 @@ type ChangesetReturnType<T> = {
 };
 type ValidationErrorMap<T> = Record<keyof T, { message: string; code: string }>;
 
-export function useChangeset<T extends Record<string, any>>(schema: ZodSchema<T>) {
+export function createValidator<T extends Record<string, unknown>>(schema: ZodSchema<T>) {
   function changeset(entity: T, changes: Partial<T> = {}): ChangesetReturnType<T> {
     const parseResult = schema.safeParse(Object.assign({}, entity, changes));
     return {
@@ -50,7 +50,7 @@ if (import.meta.vitest) {
 
   type PersonType = z.infer<typeof personSchema>;
 
-  const validator = useChangeset(personSchema);
+  const validator = createValidator(personSchema);
 
   const invalidPerson: PersonType = {
     id: '',
