@@ -1,39 +1,9 @@
-# create-t3-turbo
-
-<img width="1758" alt="turbo2" src="https://user-images.githubusercontent.com/51714798/213819392-33e50db9-3e38-4c51-9a22-03abe5e48f3d.png">
+# Typescript Turborepo
 
 ## About
 
-Ever wondered how to migrate your T3 application into a monorepo? Stop right here! This is the perfect starter repo to get you running with the perfect stack!
-
-It uses [Turborepo](https://turborepo.org/) and contains:
-
-```
-.github
-  └─ workflows
-        └─ CI with pnpm cache setup
-.vscode
-  └─ Recommended extensions and settings for VSCode users
-apps
-  ├─ expo
-  |   ├─ Expo SDK 48
-  |   ├─ React Native using React 18
-  |   ├─ Navigation using Expo Router
-  |   ├─ Tailwind using Nativewind
-  |   └─ Typesafe API calls using tRPC
-  └─ next.js
-      ├─ Next.js 13
-      ├─ React 18
-      ├─ Tailwind CSS
-      └─ E2E Typesafe API Server & Client
-packages
- ├─ api
- |   └─ tRPC v10 router definition
- ├─ auth
-     └─ authentication using next-auth. **NOTE: Only for Next.js app, not Expo**
- └─ db
-     └─ typesafe db-calls using Prisma
-```
+This is a [Turborepo](https://turborepo.org/) playground for personal projects and utilities I'd like to share on NPM.
+Used the [create-t3-turbo](https://github.com/t3-oss/create-t3-turbo) repo as a starting point.
 
 ## FAQ
 
