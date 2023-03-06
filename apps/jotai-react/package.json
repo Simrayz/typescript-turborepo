@@ -7,12 +7,15 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest",
+    "test": "vitest run",
+    "test:watch": "vitest --watch",
     "test:ui": "vitest --ui"
   },
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
     "@panosse/tailwind-config": "*",
+    "@panosse/zod-changeset": "*",
+    "daisyui": "^2.51.3",
     "jotai": "^2.0.2",
     "jotai-optics": "^0.3.0",
     "optics-ts": "^2.4.0",

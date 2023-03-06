@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  darkMode: 'class',
+  plugins: [require('daisyui')],
   presets: [require('@panosse/tailwind-config')],
 };

@@ -1,4 +1,4 @@
-import { JotaiPeople } from './components/JotaiPeople';
+import { JotaiPeople } from './components/JotaiPeople/JotaiPeople';
 import { Card } from '@/components';
 
 function App() {
