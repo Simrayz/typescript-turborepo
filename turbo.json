@@ -26,6 +26,10 @@
     "//#clean": {
       "cache": false
     },
+    "test": {},
+    "test:watch": {
+      "cache": false
+    },
     "type-check": {
       "dependsOn": ["^db:generate"],
       "cache": false
