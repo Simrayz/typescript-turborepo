@@ -1,7 +1,13 @@
-import { addPersonAtom, peopleListAtom, type Person, removePersonAtom } from './peopleState';
+import {
+  addPersonAtom,
+  peopleListAtom,
+  removePersonAtom,
+  usePersonFieldAtom,
+  type Person,
+} from './peopleState';
 import { Card } from '@/components';
 import { useAtom, useAtomValue, useSetAtom, type PrimitiveAtom } from 'jotai';
-import { type SetStateAction, useState, type ChangeEvent } from 'react';
+import { type ChangeEvent } from 'react';
 
 export function JotaiPeople() {
   const peopleAtoms = useAtomValue(peopleListAtom);
@@ -10,12 +16,12 @@ export function JotaiPeople() {
 
   return (
     <Card className="space-y-2">
-      <h2 className="text-xl">Jotai People</h2>
+      <h2 className="text-xl">Jotai Adult People</h2>
       <div className="flex items-center gap-2">
-        <button className="btn" onClick={addPerson}>
+        <button className="btn btn-sm" onClick={addPerson}>
           Add Person
         </button>
-        <button className="btn" onClick={removePerson}>
+        <button className="btn btn-sm" onClick={removePerson}>
           Remove Person
         </button>
       </div>
@@ -25,7 +31,7 @@ export function JotaiPeople() {
             <th>Name</th>
             <th>Age</th>
             <th>Job Title</th>
-            <th></th>
+            <th>Adjust age</th>
           </tr>
         </thead>
         <tbody>
@@ -45,41 +51,24 @@ export function JotaiPeople() {
 }
 
 function PersonListItem(props: { personAtom: PrimitiveAtom<Person> }) {
-  const [person, setPerson] = useAtom(props.personAtom);
-
-  if (!person) return null;
-
   return (
     <tr>
-      <EditableTextCell entity={person} setEntity={setPerson} accessor="name" />
-      <EditableTextCell entity={person} setEntity={setPerson} accessor="age" type="number" />
-      <EditableTextCell entity={person} setEntity={setPerson} accessor="jobTitle" />
-      <td>
-        <button
-          className="btn btn-secondary"
-          onClick={() => setPerson({ ...person, age: person.age + 1 })}
-        >
-          Age Up
-        </button>
-      </td>
+      <EditableTextCell personAtom={props.personAtom} accessor="name" />
+      <EditableTextCell personAtom={props.personAtom} accessor="age" type="number" />
+      <EditableTextCell personAtom={props.personAtom} accessor="jobTitle" />
+      <AgeUpCell personAtom={props.personAtom} />
     </tr>
   );
 }
 
 type EditableTextCellProps<T> = {
   accessor: keyof T;
-  entity: T;
-  setEntity: (value: SetStateAction<T>) => void;
+  personAtom: PrimitiveAtom<T>;
   type?: 'text' | 'number';
 };
-function EditableTextCell<T extends Record<string, unknown>>({
-  entity,
-  setEntity,
-  accessor,
-  type = 'text',
-}: EditableTextCellProps<T>) {
-  const currentEntityValue =
-    type === 'number' ? (entity[accessor] as number) : (entity[accessor] as string);
+
+function EditableTextCell({ personAtom, accessor, type = 'text' }: EditableTextCellProps<Person>) {
+  const [fieldValue, setFieldValue] = useAtom(usePersonFieldAtom(personAtom, accessor));
 
   return (
     <td>
@@ -87,14 +76,43 @@ function EditableTextCell<T extends Record<string, unknown>>({
         type={type}
         placeholder={`Type ${accessor as string} here`}
         className="input input-sm input-ghost w-full max-w-xs"
-        value={currentEntityValue}
+        value={fieldValue}
         onChange={(event: ChangeEvent<HTMLInputElement>) =>
-          setEntity({
-            ...entity,
-            [accessor]: type === 'number' ? event.target.valueAsNumber : event.target.value,
-          })
+          setFieldValue(type === 'number' ? event.target.valueAsNumber : event.target.value)
         }
       />
+    </td>
+  );
+}
+
+type AgeUpCellProps = {
+  personAtom: PrimitiveAtom<Person>;
+};
+function AgeUpCell({ personAtom }: AgeUpCellProps) {
+  const [personAge, setPersonAge] = useAtom(usePersonFieldAtom(personAtom, 'age'));
+
+  function adjustAge(amount: number) {
+    setPersonAge((previous) => {
+      const previousAge = previous as number;
+      if (previousAge + amount < 18) return previous;
+      return previousAge + amount;
+    });
+  }
+
+  return (
+    <td>
+      <div className="flex gap-1">
+        {[1, 5, 10, -1, -5, -10].map((amount) => (
+          <button
+            key={'adjust-age-button-' + amount.toString()}
+            className="btn btn-ghost btn-xs"
+            disabled={amount < 0 && (personAge as number) + amount < 18}
+            onClick={() => adjustAge(amount)}
+          >
+            {`${amount > 0 ? '+ ' + amount.toString() : amount}`}
+          </button>
+        ))}
+      </div>
     </td>
   );
 }

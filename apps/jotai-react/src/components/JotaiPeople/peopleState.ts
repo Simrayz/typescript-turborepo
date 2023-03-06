@@ -1,5 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { type PrimitiveAtom, atom } from 'jotai';
+import { focusAtom } from 'jotai-optics';
+import { useMemo } from 'react';
 
 export type Person = {
   id: string;
@@ -42,3 +44,10 @@ export const removePersonAtom = atom(null, (_get, set, _update) => {
     return remainingPeople;
   });
 });
+
+export function usePersonFieldAtom(entityAtom: PrimitiveAtom<Person>, accessor: keyof Person) {
+  return useMemo(
+    () => focusAtom(entityAtom, (optic) => optic.prop(accessor)),
+    [entityAtom, accessor]
+  );
+}
